@@ -126,13 +126,9 @@ Client.prototype.upload = function(stream, isVideo, cb) {
  * @param  {Array|String} friends An array, or comma-seperated list of friends to send the snap to.
  * @param  {Number}       time    How long (in seconds) a snap should be visible. This should only be set if the snap is a picture.
  */
-Client.prototype.send = function(mediaId,friends,timeOrCb,cb) {
-    if(typeof timeOrCb === 'function') {
-        cb = timeOrCb;
-    }
-    else {
-    	var time = timeOrCb || 5;
-    }
+Client.prototype.send = function(mediaId,friends,time,cb) {
+    time = time || 5;
+
     return sc.send(this.username,this.auth_token,mediaId,friends,time).nodeify(cb);
 };
 
